@@ -8,7 +8,7 @@ body {
 
 .Board {
   margin: auto;
-  margin-top: 25%;
+  margin-top: 10%;
   border: 0;
 }
 
@@ -17,4 +17,16 @@ body {
   border-collapse:collapse;
   width: 200px;
   height: 50px;
+}
+
+td:hover {
+  background-color: green;
+}
+
+#select-circle:hover {
+  transform:scale(1.2);
+}
+
+#select-cross:hover {
+  transform:scale(1.2);
 }

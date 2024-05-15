@@ -4,6 +4,7 @@ import { FaRegCircle as Circle } from "react-icons/fa";
 import { ImCross as Cross } from "react-icons/im";
 import { VscBlank as Blank} from "react-icons/vsc";
 import wins from '../Wins.js';
+import Selection from '../components/Selection.js';
 
 function GamePage({ avail, player, bot }) {
 
@@ -23,17 +24,23 @@ function GamePage({ avail, player, bot }) {
 
     const [playing, setPlaying] = useState(true);
 
+    const [playerIcon, setPlayerIcon] = useState(<Circle/>);
+    const [botIcon, setBotIcon] = useState(<Cross/>);
+
+    const [gameStarted, setGameStarted] = useState(false);
+
+
     const playerMove = id => {
+        setGameStarted(true);
         if (!playing) return;
         let pos = avail.indexOf(id);
         if (pos !== -1) {
             player.push(avail[pos]);
             avail.splice(pos, 1);
-            setIcon[id - 1](<Circle/>);
+            setIcon[id - 1](playerIcon);
             checkPlayerWin();
             botMove();
         }
-        console.log(player);
     }
 
     const botMove = () => {
@@ -46,7 +53,7 @@ function GamePage({ avail, player, bot }) {
         const id = avail[pos];
         bot.push(id);
         avail.splice(pos, 1);
-        setIcon[id - 1](<Cross/>);
+        setIcon[id - 1](botIcon);
         checkBotWin();
     }
 
@@ -57,6 +64,8 @@ function GamePage({ avail, player, bot }) {
                             player.indexOf(win[2]) !== -1;
             if (playerWin) {
                 setPlaying(false);
+
+                // will display win message in the future
                 console.log("You Win!");
             }
         }
@@ -69,14 +78,18 @@ function GamePage({ avail, player, bot }) {
                          bot.indexOf(win[2]) !== -1;
             if (botWin) {
                 setPlaying(false);
+
+                // will display lose message in the future
                 console.log("You Lose.");
             }
         }
     }
 
-
     return (
         <div>
+            <h1>Welcome to Tic-Tac-Toe!</h1>
+            <p>Would you like to play as X or O?</p>
+            <Selection setPlayerIcon={setPlayerIcon} setBotIcon={setBotIcon} gameStarted={gameStarted}/>
             <Board playerMove={playerMove} setIcon={setIcon} icon={icon}/>
         </div>
     );
