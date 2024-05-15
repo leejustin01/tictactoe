@@ -1,11 +1,9 @@
-import Tile from '../components/Tile.js';
 import Board from '../components/Board.js';
 import React, { useState } from 'react';
-import { FaRegCircle as Circle } from "react-icons/fa";
 import { ImCross as Cross } from "react-icons/im";
 import { VscBlank as Blank} from "react-icons/vsc";
 
-function GamePage() {
+function GamePage({ avail }) {
 
     const [icon1, setIcon1] = useState(<Blank/>);
     const [icon2, setIcon2] = useState(<Blank/>);
@@ -22,7 +20,6 @@ function GamePage() {
 
     let player = [];
     let bot = [];
-    let avail = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
     const playerMove = id => {
         let pos = avail.indexOf(id);
@@ -31,14 +28,13 @@ function GamePage() {
             avail.splice(pos, 1);
         }
         console.log(avail);
-        console.log(player);
-        console.log(bot);
 
         botMove();
     }
 
     const botMove = () => {
         let pos;
+        if (avail.length <= 0) return;
         do {
             pos = Math.floor(Math.random() * avail.length);
         } while (typeof avail[pos] != "number");

@@ -1,8 +1,5 @@
 import Tile from './Tile.js';
-import React, { useState } from 'react';
-import { VscBlank as Blank} from "react-icons/vsc";
-import { FaRegCircle as Circle } from "react-icons/fa";
-import { ImCross as Cross } from "react-icons/im";
+
 
 function Board({ playerMove, setIcon, icon }) {
 
