@@ -1,10 +1,10 @@
 import Tile from '../components/Tile.js';
 import Board from '../components/Board.js';
 
-function GamePage() {
+function GamePage({ playerMove }) {
     return (
         <div>
-            <Board/>
+            <Board playerMove={playerMove}/>
         </div>
     );
 }

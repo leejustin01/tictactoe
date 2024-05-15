@@ -1,24 +1,12 @@
-import Tile from './Tile.js';
+import BoardRow from './BoardRow.js';
 
-function Board() {
+function Board({ playerMove }) {
     return (
         <table className='Board'>
             <tbody>
-                <tr>
-                    <Tile tileNumber={1}/>
-                    <Tile tileNumber={2}/>
-                    <Tile tileNumber={3}/>
-                </tr>
-                <tr>
-                    <Tile tileNumber={4}/>
-                    <Tile tileNumber={5}/>
-                    <Tile tileNumber={6}/>
-                </tr>
-                <tr>
-                    <Tile tileNumber={7}/>
-                    <Tile tileNumber={8}/>
-                    <Tile tileNumber={9}/>
-                </tr>
+                <BoardRow playerMove={playerMove} ids={[1, 2, 3]}/>
+                <BoardRow playerMove={playerMove} ids={[4, 5, 6]}/>
+                <BoardRow playerMove={playerMove} ids={[7, 8, 9]}/>
             </tbody>
         </table>
     );
