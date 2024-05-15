@@ -11,8 +11,14 @@ function App() {
     let pos = avail.indexOf(id, 0);
     if (pos !== -1) {
       player.push(avail[pos]);
-      delete avail[pos];
+      avail.splice(pos, 1);
     }
+  }
+
+  const botMove = () => {
+    const pos = Math.random(0, avail.length);
+    bot.push(avail[pos]);
+    avail.splice(pos, 1);
   }
 
   return (
